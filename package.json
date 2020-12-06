@@ -45,7 +45,12 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "2.4.3"
+    "@capacitor/cli": "2.4.3",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.18.0",
+    "prettier": "^2.2.1"
   },
   "description": "An Ionic project"
 }
