@@ -30,8 +30,8 @@ import 'src/theme/variables.css';
 const App: React.FC = () => (
   <IonApp>
     <IonPage>
-      <Header title="Testing" />
-      <IonContent fullscreen>
+      <Header title="Emizahs" />
+      <IonContent className="card-display" fullscreen>
         <CardDisplay />
       </IonContent>
     </IonPage>
