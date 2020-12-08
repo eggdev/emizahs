@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { IonTitle, IonButton } from '@ionic/react';
+import { IonButton, IonCard, IonCardHeader, IonCardTitle } from '@ionic/react';
 import quoteData from 'src/data.json';
-import 'src/pages/CardDisplay/card-display.css';
 
 const CardDisplay: React.FC = () => {
   const [quoteIndex, setQuoteIndex] = useState(0);
@@ -24,8 +23,12 @@ const CardDisplay: React.FC = () => {
   
   return (
     <>
-      <IonTitle size='large'>{quoteData[quoteIndex]}</IonTitle>
-      <IonButton onClick={handleClick}>Click Me</IonButton>
+      <IonCard>
+        <IonCardHeader>
+          <IonCardTitle>{quoteData[quoteIndex]}</IonCardTitle>
+        </IonCardHeader>
+        <IonButton onClick={handleClick}>Click Me</IonButton>
+      </IonCard>
     </>
   );
 };

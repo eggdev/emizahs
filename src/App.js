@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  IonApp,
-  IonPage,
-  IonContent
-} from '@ionic/react';
+import { IonApp, IonPage, IonContent } from '@ionic/react';
 
 import Header from 'src/components/Header';
 
@@ -27,11 +23,11 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import 'src/theme/variables.css';
 
-const App: React.FC = () => (
+const App = () => (
   <IonApp>
     <IonPage>
-      <Header title="Emizahs" />
-      <IonContent className="card-display" fullscreen>
+      <Header title='Emizahs' />
+      <IonContent className='card-display' fullscreen>
         <CardDisplay />
       </IonContent>
     </IonPage>
