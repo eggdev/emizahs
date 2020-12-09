@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { IonButton, IonCard, IonCardHeader, IonCardTitle } from '@ionic/react';
+import PropTypes from 'prop-types';
+import { IonCard, IonCardHeader, IonCardTitle } from '@ionic/react';
 import quoteData from 'src/data.json';
 
 const CardDisplay = () => {
@@ -7,11 +8,6 @@ const CardDisplay = () => {
 
   const getRandomIndex = (multiplyValue) => {
     return Math.floor(Math.random() * multiplyValue);
-  };
-
-  const handleClick = () => {
-    const randomIndex = getRandomIndex(quoteData.length);
-    setQuoteIndex(randomIndex);
   };
 
   useEffect(() => {
@@ -24,10 +20,13 @@ const CardDisplay = () => {
         <IonCardHeader>
           <IonCardTitle>{quoteData[quoteIndex]}</IonCardTitle>
         </IonCardHeader>
-        <IonButton onClick={handleClick}>Click Me</IonButton>
       </IonCard>
     </>
   );
+};
+
+CardDisplay.propTypes = {
+  quoteContent: PropTypes.string,
 };
 
 export default CardDisplay;
