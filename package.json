@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.3",
+    "babel-eslint": "^10.0.3",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.18.0",
     "prettier": "^2.2.1"

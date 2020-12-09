@@ -26,8 +26,8 @@ import 'src/theme/variables.css';
 const App = () => (
   <IonApp>
     <IonPage>
-      <Header title='Emizahs' />
-      <IonContent className='card-display' fullscreen>
+      <Header title="Emizahs" />
+      <IonContent className="card-display" fullscreen>
         <CardDisplay />
       </IonContent>
     </IonPage>

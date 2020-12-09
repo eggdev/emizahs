@@ -2,25 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { IonButton, IonCard, IonCardHeader, IonCardTitle } from '@ionic/react';
 import quoteData from 'src/data.json';
 
-const CardDisplay: React.FC = () => {
+const CardDisplay = () => {
   const [quoteIndex, setQuoteIndex] = useState(0);
-  
-  const getRandomIndex: (baseValue: number) => number = function(
-    multiplyValue: number
-  ) {
+
+  const getRandomIndex = (multiplyValue) => {
     return Math.floor(Math.random() * multiplyValue);
-  }
+  };
 
   const handleClick = () => {
     const randomIndex = getRandomIndex(quoteData.length);
     setQuoteIndex(randomIndex);
-  }
+  };
 
   useEffect(() => {
     setQuoteIndex(getRandomIndex(quoteData.length));
   }, []);
 
-  
   return (
     <>
       <IonCard>
