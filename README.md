@@ -12,3 +12,4 @@ And many cool future improvements I haven't thought about yet
 - [ ] Audio for each one as well, works like ham horn
 - [ ] Menu for different actions
 - [ ] One will alert me directly that she's had a long day and wants a Margarita
+- [ ] Need to add Semantic Release so that it will upate the version number on each merge to master
