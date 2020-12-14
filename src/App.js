@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  IonSplitPane,
   IonApp,
   IonPage,
   IonContent,
@@ -21,31 +22,33 @@ import Header from 'src/components/Header';
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <IonApp>
-        <Menu />
-        <IonReactRouter>
-          <IonTabs>
-            <IonRouterOutlet>
-              <IonPage menuId="main">
-                <Header title="Butts" />
-                <Route
-                  exact
-                  path="/"
-                  render={() => (
-                    <IonContent className="card-display" fullscreen>
-                      {/* <CardDisplay /> */}
-                    </IonContent>
-                  )}
-                />
-              </IonPage>
-            </IonRouterOutlet>
-            <IonTabBar slot="bottom">
-              <IonTabButton>
-                <IonIcon icon={home} />
-              </IonTabButton>
-            </IonTabBar>
-          </IonTabs>
-        </IonReactRouter>
+      <IonApp className="dark-theme">
+        <IonSplitPane contentId="main">
+          <Menu />
+          <IonReactRouter>
+            <IonTabs>
+              <IonRouterOutlet id="main">
+                <IonPage>
+                  <Header title="Butts" />
+                  <Route
+                    exact
+                    path="/"
+                    render={() => (
+                      <IonContent className="card-display" fullscreen>
+                        {/* <CardDisplay /> */}
+                      </IonContent>
+                    )}
+                  />
+                </IonPage>
+              </IonRouterOutlet>
+              <IonTabBar slot="bottom">
+                <IonTabButton>
+                  <IonIcon icon={home} />
+                </IonTabButton>
+              </IonTabBar>
+            </IonTabs>
+          </IonReactRouter>
+        </IonSplitPane>
       </IonApp>
     </ThemeProvider>
   );

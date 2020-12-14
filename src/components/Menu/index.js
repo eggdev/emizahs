@@ -10,7 +10,7 @@ import {
 } from '@ionic/react';
 
 const Menu = () => (
-  <IonMenu type="overlay" contentId="main" swipeGesture={true}>
+  <IonMenu type="overlay" swipeGesture={true} contentId="main">
     <IonHeader>
       <IonToolbar color="primary">
         <IonTitle>Start Menu</IonTitle>
