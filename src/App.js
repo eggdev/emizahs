@@ -15,37 +15,40 @@ import { home } from 'ionicons/icons';
 import { ThemeProvider } from 'react-jss';
 
 import theme from 'src/theme';
+import Menu from 'src/components/Menu';
 import Header from 'src/components/Header';
-import CardDisplay from 'src/pages/CardDisplay';
 
-const App = () => (
-  <ThemeProvider theme={theme}>
-    <IonApp>
-      <IonReactRouter>
-        <IonTabs>
-          <IonRouterOutlet>
-            <IonPage>
-              <Header title="Emizahs" />
-              <Route
-                exact
-                path="/"
-                render={() => (
-                  <IonContent className="card-display" fullscreen>
-                    <CardDisplay />
-                  </IonContent>
-                )}
-              />
-            </IonPage>
-          </IonRouterOutlet>
-          <IonTabBar slot="bottom">
-            <IonTabButton>
-              <IonIcon icon={home} />
-            </IonTabButton>
-          </IonTabBar>
-        </IonTabs>
-      </IonReactRouter>
-    </IonApp>
-  </ThemeProvider>
-);
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <IonApp>
+        <Menu />
+        <IonReactRouter>
+          <IonTabs>
+            <IonRouterOutlet>
+              <IonPage menuId="main">
+                <Header title="Butts" />
+                <Route
+                  exact
+                  path="/"
+                  render={() => (
+                    <IonContent className="card-display" fullscreen>
+                      {/* <CardDisplay /> */}
+                    </IonContent>
+                  )}
+                />
+              </IonPage>
+            </IonRouterOutlet>
+            <IonTabBar slot="bottom">
+              <IonTabButton>
+                <IonIcon icon={home} />
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+        </IonReactRouter>
+      </IonApp>
+    </ThemeProvider>
+  );
+};
 
 export default App;
