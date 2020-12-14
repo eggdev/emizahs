@@ -3,6 +3,8 @@
     "baseUrl": "."
   },
   "include": [
-    "database",
+        "controllers",
+        "models",
+        "routes",
   ]
 }

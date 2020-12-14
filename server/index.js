@@ -1,10 +1,30 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const app = express();
+const Mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const AuthRoutes = require('./routes/auth.routes');
+const QuotesRoutes = require('./routes/quotes.routes');
+
 dotenv.config();
+const app = express();
 
-const { connectToDatabase } = require('./database');
+const { DB_URL, DB_NAME } = process.env;
 
-app.listen(8080, () => {
-  connectToDatabase();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+Mongoose.Promise = global.Promise;
+Mongoose.connect(`${DB_URL}/${DB_NAME}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => console.log('Successful connection to db'))
+  .catch((err) => {
+    console.log('Could not connect to db...', err);
+    process.exit();
+  });
+
+app.listen(process.env.PORT || 8080, async () => {
+  AuthRoutes(app);
+  QuotesRoutes(app);
 });
