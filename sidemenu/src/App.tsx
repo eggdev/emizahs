@@ -16,21 +16,19 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <IonApp>
-        <IonReactRouter>
-          <IonSplitPane contentId="main">
-            {/* <Menu /> */}
-            <IonRouterOutlet id="main">
-              {userInfo.loggedIn ? (
-                <>
-                  <Route path="/page/:name" component={Page} exact />
-                  <Redirect from="/" to="/page/Inbox" exact />
-                </>
-              ) : (
-                <Login />
-              )}
-            </IonRouterOutlet>
-          </IonSplitPane>
-        </IonReactRouter>
+        {userInfo.loggedIn ? (
+          <IonReactRouter>
+            <IonSplitPane contentId="main">
+              <Menu />
+              <IonRouterOutlet id="main">
+                <Route path="/page/:name" component={Page} exact />
+                <Redirect from="/" to="/page/Inbox" exact />
+              </IonRouterOutlet>
+            </IonSplitPane>
+          </IonReactRouter>
+        ) : (
+          <Login />
+        )}
       </IonApp>
     </ThemeProvider>
   );
