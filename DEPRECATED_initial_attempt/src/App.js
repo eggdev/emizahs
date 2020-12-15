@@ -19,27 +19,19 @@ import theme from 'src/theme';
 import Menu from 'src/components/Menu';
 import Header from 'src/components/Header';
 
+import Login from 'src/pages/Login';
+
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <IonApp className="dark-theme">
-        <IonSplitPane contentId="main">
+        <Login />
+        {/* <IonSplitPane contentId="main">
           <Menu />
           <IonReactRouter>
             <IonTabs>
               <IonRouterOutlet id="main">
-                <IonPage>
-                  <Header title="Butts" />
-                  <Route
-                    exact
-                    path="/"
-                    render={() => (
-                      <IonContent className="card-display" fullscreen>
-                        {/* <CardDisplay /> */}
-                      </IonContent>
-                    )}
-                  />
-                </IonPage>
+                <IonPage></IonPage>
               </IonRouterOutlet>
               <IonTabBar slot="bottom">
                 <IonTabButton>
@@ -48,7 +40,7 @@ const App = () => {
               </IonTabBar>
             </IonTabs>
           </IonReactRouter>
-        </IonSplitPane>
+        </IonSplitPane> */}
       </IonApp>
     </ThemeProvider>
   );
