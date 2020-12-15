@@ -21,12 +21,12 @@ const Login: React.FC = () => {
       ],
     })
       .then((res) => {
-        alert('Send token to apple for verification: ' + res.identityToken);
         console.log(res);
+        alert('Send token to apple for verification: ' + res.identityToken);
       })
       .catch((error) => {
-        alert(error.code + ' ' + error.localizedDescription);
         console.error(error);
+        alert(error.code + ' ' + error.localizedDescription);
       });
   };
 
