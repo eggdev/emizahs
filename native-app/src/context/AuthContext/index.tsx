@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { UserInfo } from '../../models/UserInfo';
-
+import Login from '../../pages/Login';
 interface IAuth {
   userInfo: UserInfo;
 }
@@ -15,6 +15,10 @@ const AuthProvider: React.FC = (props) => {
   const [userInfo, setUserInfo] = useState<UserInfo>({
     loggedIn: false,
   });
+
+  if (userInfo.loggedIn) {
+    return <Login />;
+  }
 
   return <AuthContext.Provider value={{ userInfo }} {...props} />;
 };
