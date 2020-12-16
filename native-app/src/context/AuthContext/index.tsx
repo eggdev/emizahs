@@ -1,26 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserInfo } from '../../models/UserInfo';
 import Login from '../../pages/Login';
-interface IAuth {
-  userInfo: UserInfo;
-}
+import useLocalStorage from '../../hooks/useLocalStorage';
 
-const AuthContext = React.createContext<IAuth>({
-  userInfo: {
-    loggedIn: false,
-  },
+const AuthContext = React.createContext<UserInfo>({
+  user: '',
 });
 
 const AuthProvider: React.FC = (props) => {
-  const [userInfo, setUserInfo] = useState<UserInfo>({
-    loggedIn: false,
+  const { setStorage, getStorage } = useLocalStorage();
+
+  const [account, setAccount] = useState<UserInfo>({
+    user: '',
   });
 
-  if (userInfo.loggedIn) {
-    return <Login />;
-  }
+  const setLoginResponse = async (userId: any) => {
+    // When authorized, we'll set their ID in LS
+    setStorage('user', userId);
+  };
 
-  return <AuthContext.Provider value={{ userInfo }} {...props} />;
+  const getAccountFromStorage = async () => {
+    const retrieved = await getStorage('user');
+    // TODO: If found, we want to fetch information about user from Apple/API
+    retrieved && setAccount({ ...retrieved });
+    // Else, the user will just continue to the Sign In with Apple page
+  };
+
+  useEffect(() => {
+    // On App Load, check local storage
+    getAccountFromStorage();
+  }, []);
+
+  if (account.user === '') return <Login setUserInfo={setLoginResponse} />;
+
+  return <AuthContext.Provider value={{ ...account }} {...props} />;
 };
 
 const useAuth = () => {

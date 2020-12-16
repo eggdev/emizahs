@@ -12,8 +12,12 @@ import {
   ASAuthorizationAppleIDRequest,
 } from '@ionic-native/sign-in-with-apple';
 
-const Login: React.FC = () => {
-  const handleClick = async () => {
+interface DispatchProps {
+  setUserInfo: Function;
+}
+
+const Login: React.FC<DispatchProps> = ({ setUserInfo }) => {
+  const runAuthCheck = async () => {
     SignInWithApple.signin({
       requestedScopes: [
         ASAuthorizationAppleIDRequest.ASAuthorizationScopeFullName,
@@ -21,14 +25,19 @@ const Login: React.FC = () => {
       ],
     })
       .then((res) => {
-        console.log(res);
-        alert('Send token to apple for verification: ' + res.identityToken);
+        setUserInfo({
+          user: res.user,
+        });
       })
       .catch((error) => {
-        console.error(error);
         alert(error.code + ' ' + error.localizedDescription);
+        setUserInfo({
+          user: '',
+        });
       });
   };
+
+  const handleClick = () => runAuthCheck();
 
   return (
     <IonPage>
