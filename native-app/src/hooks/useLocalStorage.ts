@@ -1,4 +1,3 @@
-import React from 'react';
 import { Plugins } from '@capacitor/core';
 
 const { Storage } = Plugins;

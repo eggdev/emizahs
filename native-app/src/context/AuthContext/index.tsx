@@ -17,6 +17,7 @@ const AuthProvider: React.FC = (props) => {
   const setLoginResponse = async (userId: any) => {
     // When authorized, we'll set their ID in LS
     setStorage('user', userId);
+    setAccount({ ...userId });
   };
 
   const getAccountFromStorage = async () => {

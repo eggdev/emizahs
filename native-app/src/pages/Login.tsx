@@ -32,7 +32,7 @@ const Login: React.FC<DispatchProps> = ({ setUserInfo }) => {
       .catch((error) => {
         alert(error.code + ' ' + error.localizedDescription);
         setUserInfo({
-          user: '',
+          user: 'asdf',
         });
       });
   };
