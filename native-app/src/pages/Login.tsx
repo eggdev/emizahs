@@ -11,12 +11,18 @@ import {
   SignInWithApple,
   ASAuthorizationAppleIDRequest,
 } from '@ionic-native/sign-in-with-apple';
+import useAxios from 'src/hooks/useAxios';
+import useLocalStorage from 'src/hooks/useLocalStorage';
 
-interface DispatchProps {
+interface AuthProviderProps {
+  account: Object;
   setUserInfo: Function;
 }
 
-const Login: React.FC<DispatchProps> = ({ setUserInfo }) => {
+const Login: React.FC<AuthProviderProps> = ({ setUserInfo }) => {
+  const { postMethod } = useAxios();
+  const { setStorage } = useLocalStorage();
+
   const runAuthCheck = async () => {
     SignInWithApple.signin({
       requestedScopes: [
@@ -24,16 +30,19 @@ const Login: React.FC<DispatchProps> = ({ setUserInfo }) => {
         ASAuthorizationAppleIDRequest.ASAuthorizationScopeEmail,
       ],
     })
-      .then((res) => {
-        setUserInfo({
-          user: res.user,
+      .then(async (res) => {
+        const response = await postMethod({
+          url: 'api/account/create',
+          data: { ...res },
         });
+        await setStorage('user', { user: response.data.account.user });
       })
-      .catch((error) => {
-        alert(error.code + ' ' + error.localizedDescription);
-        setUserInfo({
-          user: 'asdf',
+      .catch(async (error) => {
+        const response = await postMethod({
+          url: 'api/account/error',
+          data: { ...error },
         });
+        console.log(response);
       });
   };
 

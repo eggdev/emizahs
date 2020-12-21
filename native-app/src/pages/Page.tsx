@@ -16,16 +16,16 @@ import useAxios from '../hooks/useAxios';
 const Page: React.FC = () => {
   const { name } = useParams<{ name: string }>();
 
-  const serviceConfig = {
-    method: 'get',
-    url: '/quotes',
-  };
+  // const serviceConfig = {
+  //   method: 'get',
+  //   url: '/quotes',
+  // };
 
-  const [data, setServiceConfig] = useAxios(serviceConfig, {});
+  // const [data, setServiceConfig] = useAxios(serviceConfig, {});
 
-  const requestQuoteData = async () => {
-    setServiceConfig(serviceConfig);
-  };
+  // const requestQuoteData = async () => {
+  //   setServiceConfig(serviceConfig);
+  // };
 
   return (
     <IonPage>
@@ -42,7 +42,7 @@ const Page: React.FC = () => {
             <IonTitle size="large">{name} page</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonButton onClick={requestQuoteData}>Fetch Quotes</IonButton>
+        {/* <IonButton onClick={requestQuoteData}>Fetch Quotes</IonButton> */}
       </IonContent>
     </IonPage>
   );

@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { Plugins } from '@capacitor/core';
 
 const { Storage } = Plugins;
 const useLocalStorage = () => {
+  const [state, setState] = useState({});
+
   const setStorage = async (key: string, value: object|string) => {
     await Storage.set({
       key,
@@ -27,6 +30,7 @@ const useLocalStorage = () => {
   }
 
   return {
+    state,
     getStorage,
     setStorage,
     resetStorage,

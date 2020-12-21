@@ -8,21 +8,21 @@ const AuthContext = React.createContext<UserInfo>({
 });
 
 const AuthProvider: React.FC = (props) => {
-  const { setStorage, getStorage } = useLocalStorage();
+  const { getStorage } = useLocalStorage();
 
   const [account, setAccount] = useState<UserInfo>({
     user: '',
   });
 
-  const setLoginResponse = async (userId: any) => {
+  const setUserInfo = async (userId: any) => {
     // When authorized, we'll set their ID in LS
-    setStorage('user', userId);
     setAccount({ ...userId });
   };
 
   const getAccountFromStorage = async () => {
     const retrieved = await getStorage('user');
     // TODO: If found, we want to fetch information about user from Apple/API
+    console.log(account);
     retrieved && setAccount({ ...retrieved });
     // Else, the user will just continue to the Sign In with Apple page
   };
@@ -32,7 +32,9 @@ const AuthProvider: React.FC = (props) => {
     getAccountFromStorage();
   }, []);
 
-  if (account.user === '') return <Login setUserInfo={setLoginResponse} />;
+  if (account.user === '') {
+    return <Login account={account} setUserInfo={setUserInfo} />;
+  }
 
   return <AuthContext.Provider value={{ ...account }} {...props} />;
 };

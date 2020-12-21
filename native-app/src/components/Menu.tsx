@@ -12,11 +12,13 @@ import {
 import React from 'react';
 import { logOutOutline } from 'ionicons/icons';
 import useLocalStorage from '../hooks/useLocalStorage';
+import { useAuth } from '../context/AuthContext';
 import './Menu.css';
 
 const Menu: React.FC = () => {
   const { resetStorage } = useLocalStorage();
-
+  const auth = useAuth();
+  console.log(auth);
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>

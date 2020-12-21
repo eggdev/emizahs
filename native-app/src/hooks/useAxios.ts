@@ -1,37 +1,25 @@
-import { useState, useEffect } from 'react';
-
 import axios from 'axios';
 
+const baseURL = 'http://localhost:8080';
 
-const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8080/api'
-})
+type FetchConfig = {
+  url: string;
+  data: object;
+};
 
-type AxiosConfig = object;
+const useAxios = () => {
 
-type InitialData = object;
+  // const useGet = async (fetchConfig: FetchConfig) => {
+  //   axios.get(`${baseURL}/${fetchConfig.url}`)
+  // }
 
-const useAxios: (axiosConfig: AxiosConfig, initialData: InitialData) => any[] = (axiosConfig, initialData) => {
-  const [state, setState] = useState(initialData);
-  const [serviceConfig, setServiceConfig] = useState(axiosConfig);
-
-  const runFetch = async () => {
-    axiosInstance(axiosConfig).then((res) => {
-      console.log('ran', res);
-
-    }).catch((err) => {
-      console.log('error', err);
-    })
+  const postMethod = async (fetchConfig: FetchConfig) => {
+    return axios.post(`${baseURL}/${fetchConfig.url}`, {
+      data: fetchConfig.data,
+    }).then((res) => res).catch((err) => err)
   }
 
-  useEffect(() => {
-    runFetch();
-  }, [serviceConfig])
-
-  return [
-    state,
-    setServiceConfig,
-  ]
+  return {postMethod}
 }; 
 
 export default useAxios;
