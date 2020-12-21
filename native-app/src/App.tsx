@@ -1,26 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, useHistory } from 'react-router-dom';
 import { ThemeProvider } from 'react-jss';
 
-import Menu from './components/Menu';
-import Page from './pages/Page';
-import theme from './theme';
+import Menu from 'src/components/Menu';
+import useAccountInfo from 'src/hooks/useAccountInfo';
+import useLocalStorage from 'src/hooks/useLocalStorage';
+import Login from 'src/pages/Login';
+import Home from 'src/pages/Home';
+import theme from 'src/theme';
 
 const App: React.FC = () => {
+  const history = useHistory();
+  const { getStorage } = useLocalStorage();
+  const { account, setAccount, logout } = useAccountInfo();
+
+  const requestAccountInfo = async () => {
+    const { user } = await getStorage('user');
+    if (user) {
+      setAccount({
+        ...account,
+        user,
+      });
+      history.push('/home');
+    } else {
+      history.push('/login');
+    }
+  };
+
+  useEffect(() => {
+    requestAccountInfo();
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <IonApp>
-        <IonReactRouter>
-          <IonSplitPane contentId="main">
-            <Menu />
-            <IonRouterOutlet id="main">
-              <Route path="/:name" component={Page} exact />
-              <Redirect from="/" to="/home" exact />
-            </IonRouterOutlet>
-          </IonSplitPane>
-        </IonReactRouter>
+        <IonSplitPane contentId="main">
+          <Menu logout={logout} />
+          <IonRouterOutlet id="main">
+            <Route path="/login" component={Login} exact />
+            <Route path="/home" component={Home} exact />
+            <Redirect from="/" to="/login" exact />
+          </IonRouterOutlet>
+        </IonSplitPane>
       </IonApp>
     </ThemeProvider>
   );

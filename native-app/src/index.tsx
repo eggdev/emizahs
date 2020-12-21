@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { IonReactRouter } from '@ionic/react-router';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { AuthProvider } from './context/AuthContext';
 
 ReactDOM.render(
-  <AuthProvider>
+  <IonReactRouter>
     <App />
-  </AuthProvider>,
+  </IonReactRouter>,
   document.getElementById('root'),
 );
 

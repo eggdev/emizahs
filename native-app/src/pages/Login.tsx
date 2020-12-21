@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   IonButton,
   IonContent,
@@ -21,7 +21,7 @@ interface AuthProviderProps {
 
 const Login: React.FC<AuthProviderProps> = ({ setUserInfo }) => {
   const { postMethod } = useAxios();
-  const { setStorage } = useLocalStorage();
+  const { getStorage, setStorage } = useLocalStorage();
 
   const runAuthCheck = async () => {
     SignInWithApple.signin({
@@ -45,6 +45,15 @@ const Login: React.FC<AuthProviderProps> = ({ setUserInfo }) => {
         console.log(response);
       });
   };
+
+  const checkForLoggedInUser = async () => {
+    const { user } = await getStorage('user');
+    console.log(user);
+  };
+
+  useEffect(() => {
+    checkForLoggedInUser();
+  }, []);
 
   const handleClick = () => runAuthCheck();
 

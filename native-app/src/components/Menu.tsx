@@ -12,20 +12,23 @@ import {
 import React from 'react';
 import { logOutOutline } from 'ionicons/icons';
 import useLocalStorage from '../hooks/useLocalStorage';
-import { useAuth } from '../context/AuthContext';
 import './Menu.css';
 
-const Menu: React.FC = () => {
-  const { resetStorage } = useLocalStorage();
-  const auth = useAuth();
-  console.log(auth);
+const Menu: React.FC<Menu> = ({ logout }) => {
+  const { removeFromStorage } = useLocalStorage();
+
+  const runLogoutMethod = () => {
+    removeFromStorage('user');
+    logout();
+  };
+
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="-list">
           <IonListHeader>Emizahs</IonListHeader>
           <IonMenuToggle autoHide={false}>
-            <IonItem onClick={() => resetStorage()}>
+            <IonItem onClick={runLogoutMethod}>
               <IonIcon slot="start" ios={logOutOutline} />
               <IonLabel>Logout</IonLabel>
             </IonItem>
@@ -34,6 +37,10 @@ const Menu: React.FC = () => {
       </IonContent>
     </IonMenu>
   );
+};
+
+type Menu = {
+  logout: Function;
 };
 
 export default Menu;
