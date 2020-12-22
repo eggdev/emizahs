@@ -18,9 +18,12 @@ const Home: React.FC = () => {
 
   const fetchUserInfo = async () => {
     const { data } = await getMethod(`api/account/${account.user}`);
-    setAccount({
-      ...data.account,
-    });
+    if (data) {
+      setAccount({
+        ...account,
+        ...data.account,
+      });
+    }
   };
 
   useEffect(() => {

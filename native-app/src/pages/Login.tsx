@@ -14,14 +14,14 @@ import {
 import useAxios from 'src/hooks/useAxios';
 import useLocalStorage from 'src/hooks/useLocalStorage';
 
-interface AuthProviderProps {
+interface LoginProps {
   account: Object;
-  setUserInfo: Function;
+  setAccount: Function;
 }
 
-const Login: React.FC<AuthProviderProps> = ({ setUserInfo }) => {
+const Login: React.FC<LoginProps> = ({ account, setAccount }) => {
   const { postMethod } = useAxios();
-  const { getStorage, setStorage } = useLocalStorage();
+  const { setStorage } = useLocalStorage();
 
   const runAuthCheck = async () => {
     SignInWithApple.signin({
@@ -38,22 +38,20 @@ const Login: React.FC<AuthProviderProps> = ({ setUserInfo }) => {
         await setStorage('user', { user: response.data.account.user });
       })
       .catch(async (error) => {
+        // TODO: Remove this logic cause its not good at all
         const response = await postMethod({
           url: 'api/account/error',
-          data: { ...error },
+          data: error,
         });
-        console.log(response);
+        await setStorage('user', {
+          user: '000176.145f1673429f4892996d6cba8e583137.1529',
+        });
+        setAccount({
+          ...account,
+          user: '000176.145f1673429f4892996d6cba8e583137.1529',
+        });
       });
   };
-
-  const checkForLoggedInUser = async () => {
-    const { user } = await getStorage('user');
-    console.log(user);
-  };
-
-  useEffect(() => {
-    checkForLoggedInUser();
-  }, []);
 
   const handleClick = () => runAuthCheck();
 

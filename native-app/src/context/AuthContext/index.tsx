@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AccountInfo, DefaultAccountInfo } from '../../models/AccountInfo';
 import useLocalStorage from 'src/hooks/useLocalStorage';
+import Login from 'src/pages/Login';
 
 export interface IAuth {
   account: AccountInfo;
@@ -15,23 +16,28 @@ const AuthContext = React.createContext<IAuth>({
 });
 
 const AuthProvider: React.FC = ({ children }) => {
-  const { getStorage } = useLocalStorage();
+  const { getStorage, removeFromStorage } = useLocalStorage();
   const [account, setAccount] = useState<AccountInfo>({
     ...DefaultAccountInfo,
   });
 
-  const logout = () => {
+  const logout = async () => {
+    await removeFromStorage('user');
     setAccount({ ...DefaultAccountInfo });
   };
 
   useEffect(() => {
     const checkStorageForUser = async () => {
-      const { user } = await getStorage('user');
-      if (user) setAccount({ ...account, user });
+      const storage = await getStorage('user');
+      if (storage?.user) setAccount({ ...account, user: storage.user });
     };
 
     checkStorageForUser();
   }, []);
+
+  if (!account.user) {
+    return <Login account={account} setAccount={setAccount} />;
+  }
 
   return (
     <AuthContext.Provider

@@ -10,23 +10,12 @@ import Home from 'src/pages/Home';
 import theme from 'src/theme';
 
 const App: React.FC = () => {
-  const history = useHistory();
-  const { account } = useAuth();
-  useEffect(() => {
-    if (account.user) {
-      history.push('/home');
-    } else {
-      history.push('/login');
-    }
-  }, [account]);
-
   return (
     <ThemeProvider theme={theme}>
       <IonApp>
         <IonSplitPane contentId="main">
           <Menu />
           <IonRouterOutlet id="main">
-            <Route path="/login" component={Login} exact />
             <Route path="/home" component={Home} exact />
             <Redirect from="/" to="/login" exact />
           </IonRouterOutlet>
