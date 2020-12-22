@@ -2,24 +2,24 @@ import axios from 'axios';
 
 const baseURL = 'http://localhost:8080';
 
-type FetchConfig = {
+type PostConfig = {
   url: string;
   data: object;
 };
 
 const useAxios = () => {
 
-  // const useGet = async (fetchConfig: FetchConfig) => {
-  //   axios.get(`${baseURL}/${fetchConfig.url}`)
-  // }
+  const getMethod = async (requestUrl: String) => {
+    return axios.get(`${baseURL}/${requestUrl}`);
+  }
 
-  const postMethod = async (fetchConfig: FetchConfig) => {
-    return axios.post(`${baseURL}/${fetchConfig.url}`, {
-      data: fetchConfig.data,
+  const postMethod = async (config: PostConfig) => {
+    return axios.post(`${baseURL}/${config.url}`, {
+      data: config.data,
     }).then((res) => res).catch((err) => err)
   }
 
-  return {postMethod}
+  return { getMethod, postMethod }
 }; 
 
 export default useAxios;

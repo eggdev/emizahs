@@ -8,9 +8,25 @@ import {
   IonToolbar,
   IonButton,
 } from '@ionic/react';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useAuth } from 'src/context/AuthContext';
+import useAxios from 'src/hooks/useAxios';
 
 const Home: React.FC = () => {
+  const { getMethod } = useAxios();
+  const { account, setAccount } = useAuth();
+
+  const fetchUserInfo = async () => {
+    const { data } = await getMethod(`api/account/${account.user}`);
+    setAccount({
+      ...data.account,
+    });
+  };
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
+
   return (
     <IonPage>
       <IonHeader>

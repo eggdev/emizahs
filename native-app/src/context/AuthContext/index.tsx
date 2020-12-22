@@ -1,16 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AccountInfo, DefaultAccountInfo } from '../../models/AccountInfo';
+import useLocalStorage from 'src/hooks/useLocalStorage';
 
-const AuthContext = React.createContext<AccountInfo>({
-  ...DefaultAccountInfo,
+export interface IAuth {
+  account: AccountInfo;
+  setAccount: React.Dispatch<React.SetStateAction<AccountInfo>>;
+  logout: React.Dispatch<React.SetStateAction<{}>>;
+}
+
+const AuthContext = React.createContext<IAuth>({
+  account: { ...DefaultAccountInfo },
+  setAccount: () => {},
+  logout: () => {},
 });
 
-const AuthProvider: React.FC = (props) => {
+const AuthProvider: React.FC = ({ children }) => {
+  const { getStorage } = useLocalStorage();
   const [account, setAccount] = useState<AccountInfo>({
     ...DefaultAccountInfo,
   });
 
-  return <AuthContext.Provider value={{ ...account }} {...props} />;
+  const logout = () => {
+    setAccount({ ...DefaultAccountInfo });
+  };
+
+  useEffect(() => {
+    const checkStorageForUser = async () => {
+      const { user } = await getStorage('user');
+      if (user) setAccount({ ...account, user });
+    };
+
+    checkStorageForUser();
+  }, []);
+
+  return (
+    <AuthContext.Provider
+      value={{ account: { ...account }, setAccount, logout }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 const useAuth = () => {

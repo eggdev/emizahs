@@ -1,7 +1,11 @@
 const Account = require("../models/account.models");
 
 exports.validate = async (req, res) => {
-  return res.json({ val: "here" });
+  const { user } = req.params;
+  Account.findOne({ user }, (error, account) => {
+    if (error) return res.json({ error: error });
+    return res.json({ account });
+  });
 };
 
 exports.createUser = async (req, res) => {
