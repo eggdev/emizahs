@@ -6,7 +6,6 @@ import {
   IonMenuButton,
   IonButtons,
   IonToolbar,
-  IonButton,
 } from '@ionic/react';
 import React, { useEffect } from 'react';
 import { useAuth } from 'src/context/AuthContext';

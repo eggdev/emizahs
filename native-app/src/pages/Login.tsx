@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   IonButton,
   IonContent,
@@ -39,7 +39,7 @@ const Login: React.FC<LoginProps> = ({ account, setAccount }) => {
       })
       .catch(async (error) => {
         // TODO: Remove this logic cause its not good at all
-        const response = await postMethod({
+        await postMethod({
           url: 'api/account/error',
           data: error,
         });
