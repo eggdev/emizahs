@@ -6,14 +6,18 @@ import {
   IonMenuButton,
   IonButtons,
   IonToolbar,
+  IonButton,
 } from '@ionic/react';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from 'src/context/AuthContext';
 import useAxios from 'src/hooks/useAxios';
+
+import { Quotes, DefaultQuotes } from 'src/models/Quotes';
 
 const Home: React.FC = () => {
   const { getMethod } = useAxios();
   const { account, setAccount } = useAuth();
+  // const [quotes, setQuotes] = useState<Quotes>([...DefaultQuotes]);
 
   const fetchUserInfo = async () => {
     const { data } = await getMethod(`api/account/${account.user}`);
@@ -25,9 +29,19 @@ const Home: React.FC = () => {
     }
   };
 
+  const fetchQuotes = async () => {
+    const { data } = await getMethod(`api/quotes/${account.user}`);
+    console.log(data);
+  };
+
   useEffect(() => {
     fetchUserInfo();
+    fetchQuotes();
   }, []);
+
+  // useEffect(() => {
+  //   console.log(quotes);
+  // }, [quotes]);
 
   return (
     <IonPage>
@@ -44,7 +58,9 @@ const Home: React.FC = () => {
             <IonTitle size="large">Home page</IonTitle>
           </IonToolbar>
         </IonHeader>
-        {/* <IonButton onClick={requestQuoteData}>Fetch Quotes</IonButton> */}
+        <section>
+          <IonButton onClick={fetchQuotes}>Fetch Quotes</IonButton>
+        </section>
       </IonContent>
     </IonPage>
   );

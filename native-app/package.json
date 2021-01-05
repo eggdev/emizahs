@@ -2,6 +2,7 @@
   "name": "emizahs",
   "version": "0.0.1",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@capacitor/core": "2.4.5",
     "@capacitor/ios": "^2.4.5",

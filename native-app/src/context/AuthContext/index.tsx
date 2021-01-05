@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { AccountInfo, DefaultAccountInfo } from '../../models/AccountInfo';
+import { AccountInfo, DefaultAccountInfo } from 'src/models/AccountInfo';
 import useLocalStorage from 'src/hooks/useLocalStorage';
 import Login from 'src/pages/Login';
 
-export interface IAuth {
+export interface AuthContextProps {
   account: AccountInfo;
   setAccount: React.Dispatch<React.SetStateAction<AccountInfo>>;
   logout: React.Dispatch<React.SetStateAction<{}>>;
 }
 
-const AuthContext = React.createContext<IAuth>({
+const AuthContext = React.createContext<AuthContextProps>({
   account: { ...DefaultAccountInfo },
   setAccount: () => {},
   logout: () => {},
