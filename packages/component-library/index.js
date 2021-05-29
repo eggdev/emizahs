@@ -1,9 +1,7 @@
 import 'react-native-gesture-handler';
-import { registerRootComponent } from 'expo';
+import {registerRootComponent} from 'expo';
+import StorybookUI from './storybook';
 
-import App from './App';
+export {default as Button} from './src/components/Button';
 
-// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
-// It also ensures that whether you load the app in Expo Go or in a native build,
-// the environment is set up appropriately
-registerRootComponent(App);
+registerRootComponent(StorybookUI);
