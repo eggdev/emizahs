@@ -1,0 +1,13 @@
+{
+  "name": "emizahs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:eggdev/emizahs.git",
+  "author": "Brendan Eggers <eggers.brendan@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "husky": "^6.0.0"
+  }
+}
