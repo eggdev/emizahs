@@ -1,0 +1,12 @@
+{
+  "name": "Emizahs",
+  "displayName": "Emizahs",
+  "expo": {
+    "name": "Emizahs",
+    "slug": "Emizahs",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
