@@ -1,6 +1,14 @@
 {
-  "main": "index.js",
-  "name": "@ez/component-library",
+  "name": "@ez/components",
+  "version": "1.0.0",
+  "description": "Component Library for Emizahs",
+  "author": "Brendan Eggers <eggers.brendan@gmail.com>",
+  "homepage": "https://github.com/eggdev/emizahs#readme",
+  "main": "lib/components.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -43,14 +51,5 @@
     "jest-expo": "^41.0.0",
     "react-native-storybook-loader": "^2.0.4"
   },
-  "private": true,
-  "jest": {
-    "preset": "jest-expo",
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base)"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/__mocks__/globalMock.js"
-    ]
-  }
+  "private": true
 }
