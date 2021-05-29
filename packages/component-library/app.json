@@ -1,0 +1,12 @@
+{
+  "name": "component-library",
+  "displayName": "component-library",
+  "expo": {
+    "name": "component-library",
+    "slug": "component-library",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
