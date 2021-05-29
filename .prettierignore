@@ -1,0 +1,7 @@
+# https://prettier.io/docs/en/ignore.html#ignoring-files-prettierignore
+
+!**/.*
+**/dist/
+**/node_modules/
+backend
+AppIcon.appiconset

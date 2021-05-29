@@ -1,0 +1,10 @@
+  
+# https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories
+
+!**/.*
+**/.storybook-static/
+**/dist/
+**/node_modules/
+**/sketch
+backend
+AppIcon.appiconset
