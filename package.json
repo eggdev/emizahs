@@ -20,7 +20,12 @@
     "husky": "^6.0.0",
     "lerna": "^4.0.0",
     "prettier": "^2.3.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "rollup": "^2.50.4",
+    "yarn-run-all": "^3.1.1"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "scripts": {
+    "build:packages": "lerna run --parallel build"
+  }
 }
