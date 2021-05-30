@@ -1,0 +1,29 @@
+{
+  "name": "@ez/components",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "Brendan Eggers <eggers.brendan@gmail.com>",
+  "homepage": "https://github.com/eggdev/emizahs#readme",
+  "license": "ISC",
+  "main": "lib/components.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eggdev/emizahs.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/eggdev/emizahs/issues"
+  }
+}
