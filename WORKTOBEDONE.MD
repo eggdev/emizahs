@@ -6,10 +6,7 @@
   - SVGs - https://github.com/lottie-react-native/lottie-react-native
   - Off the ground - Just basic React Native
   - This looks good for styling - https://github.com/callstack/react-native-paper
-- [ ] Map default props through to a local story book instance
-- [ ] Map Storybook to Sketch
-- [ ] Begin designing a prototype in Sketch
-- [ ] Spin up applications locally properly
+- [x] Spin up applications locally properly
 - [ ] Connect a basic endpoint (just a ping)
 
 ### July
@@ -19,7 +16,8 @@
 - [ ] Select users and send - create message and select users, either flow
 - [ ] Send voice message to friend
 - [ ] Delete voice message 5 minutes after its been heard
-- [ ]
+- [ ] Record and store phrases
+- [ ] Send at any point
 - [ ] Deploy to environments?
 
 ### August
