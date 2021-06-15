@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
+import PropTypes from 'prop-types';
 import Button from '../../_atoms/Button';
 
 const makeStyles = () =>
@@ -21,24 +22,23 @@ const makeStyles = () =>
     },
   });
 
-const RecordButton = () => {
+const RecordButton = ({startRecord, endRecord}) => {
   const style = makeStyles();
   const [pressed, setPressed] = useState(false);
-
-  const startRecord = () => {
-    console.log('onPress');
+  const onPressIn = () => {
     setPressed(true);
+    startRecord();
   };
 
-  const endRecord = () => {
-    console.log('onPressOut');
+  const onPressOut = () => {
+    endRecord();
     setPressed(false);
   };
 
   return (
     <Button
-      onPressIn={startRecord}
-      onPressOut={endRecord}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
       style={{
         ...style.container,
         ...(pressed && {
@@ -49,6 +49,11 @@ const RecordButton = () => {
       <View style={style.innerButton} />
     </Button>
   );
+};
+
+RecordButton.propTypes = {
+  startRecord: PropTypes.func,
+  endRecord: PropTypes.func,
 };
 
 export default RecordButton;

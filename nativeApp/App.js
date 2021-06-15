@@ -1,17 +1,10 @@
-import React, {useState} from 'react';
-import * as SplashScreen from 'expo-splash-screen';
-import Home from './_organisms/Home';
+import React from 'react';
 import Record from './_organisms/Record';
 
-// Instruct SplashScreen not to hide yet, we want to do this manually
-SplashScreen.preventAutoHideAsync().catch(() => {
-  /* reloading the app might trigger some race conditions, ignore them */
-});
-
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  // const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  return isLoggedIn ? <Record /> : <Home />;
+  return <Record />;
 };
 
 export default App;
